@@ -1,9 +1,9 @@
 // IMPORTS
 #pragma once
 
+#include "Arduino.h"
 #include <Servo.h>
 #include "../include/sharp.h"
-#include "Arduino.h"
 
 // servo motor
 class RelativeMapGen
@@ -15,7 +15,7 @@ private:
     Servo sharpMountServo;
     Sharp sharp;
 
-    int (*relMap_arr)[6];
+    int (*relMap_arr)[11];
 
     /*int relMap_arr[6][11] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -176,10 +176,15 @@ private:
 
     };
 
-public:
-    RelativeMapGen(int (*relMapIn_arr)[6]);
-    // passed map array should be a 2-D array with dimensions 11x11
+    // Methods
     bool checkForObstacle(int index);
-    void updateMap(int *map);
     bool isInRange(float sharpReading, int blockVal);
+
+public:
+    // passed map array should be a 2-D array with dimensions 6x11
+    RelativeMapGen(int (*relMapIn_arr)[11]);
+    bool initArray(int (*relMapIn_arr)[11]);
+
+    // Call this method
+    void updateMap();
 };
