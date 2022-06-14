@@ -6,34 +6,66 @@
 #include "fullMapGen.h"
 #include "relativeMapGen.h"
 
-int fullMapIn[6][6] = {
-    {0, 1, 0, 0, 0, 1},
-    {1, 0, 1, 0, 0, 1},
-    {1, 1, 1, 0, 0, 1},
-    {0, 0, 1, 1, 0, 1},
-    {1, 0, 0, 0, 1, 1},
-    {1, 1, 0, 1, 1, 1}};
+// DEFINITIONS
 
-int relMapIn[6][11] = {
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+// 1.1 Motor pins
+#define ENB_M1 5
+#define ENB_M2 10
+#define IN1 7
+#define IN2 8
+#define IN3 9
+#define IN4 10
+#define SERVO_PIN 11
 
-int currPos[2] = {2, 3};
+// 1.2 Motor Params
+#define speed 50
+const int TIME_PER_REV = 100;
+
+// 2.1 IR pins - A0
+#define SHARP_PIN 14
+
+// 3.1 Map Inits
+#include "mapArrays.h"
+int currPos[2] = {5, 5};
+
+// 3.2 Map structs
+
+// Path Finding variables
+/*  Set the following variable to true when the robot
+ *  completed cleaning the room */
+bool isComplete;
+
+// Sharp and Servo objects - Not used
+Servo sharpMountServoInit;
+
+// Mapper objects
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
 
-// Servo sharpMountServo1;
-
 void setup()
 {
+  // SETTING PINS
+  // Motor pins
+  pinMode(ENB_M1, OUTPUT);
+  pinMode(ENB_M2, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  // Servo and IR pins
+  pinMode(SERVO_PIN, OUTPUT);
+  pinMode(SHARP_PIN, INPUT);
+
+  // Initiate Serial for testing
   Serial.begin(9600);
+
+  // Create mapper objects
   fullMap.initData_array(fullMapIn);
   fullMap.updateMap_arr(currPos, relMapIn);
-  // sharpMountServo1.attach(11);
+  sharpMountServoInit.attach(SERVO_PIN);
+
+  // point the servo to front
+  sharpMountServoInit.write(90);
 }
 
 // the loop function runs over and over again forever
