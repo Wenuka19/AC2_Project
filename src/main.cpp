@@ -97,6 +97,8 @@ void setup()
   arr_to_graph(nodeMap, fullMapTest);
 
   // Find initial path for a map with no obstacles
+
+  Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
 }
 
 // the loop function runs over and over again forever
