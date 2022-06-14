@@ -29,9 +29,11 @@ const int TIME_PER_REV = 100;
 
 // 3.1 Map Inits
 #include "mapArrays.h"
+// Botton middle position
 int currPos[2] = {5, 5};
 
 // 3.2 Map structs
+#include "mapper.h"
 
 // Path Finding variables
 /*  Set the following variable to true when the robot
@@ -69,20 +71,13 @@ void setup()
 
   // point the servo to front
   sharpMountServoInit.write(90);
+
+  // Find initial path for a map with no obstacles
 }
 
 // the loop function runs over and over again forever
 void loop()
 {
-  // sharpMountServo1.write(0);
-  /*for (int i=0; i<90; i++){
-    sharpMountServo1.write(i);
-    delay(1000);
-  }
-  for (int i=90; i<0; i--){
-    sharpMountServo1.write(i);
-    delay(1000);
-  }*/
   relMapper.updateMap();
   fullMap.updateMap_arr(currPos, relMapIn);
 
