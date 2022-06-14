@@ -1,9 +1,9 @@
 // IMPORTS
 #pragma once
 
+#include "Arduino.h"
 #include <Servo.h>
 #include "../include/sharp.h"
-#include "Arduino.h"
 
 // servo motor
 class RelativeMapGen
@@ -15,7 +15,7 @@ private:
     Servo sharpMountServo;
     Sharp sharp;
 
-    int (*relMap_arr)[6];
+    int (*relMap_arr)[11];
 
     /*int relMap_arr[6][11] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -35,10 +35,15 @@ private:
     const int mapBlock[65][2] =
         {{5, 6}, {5, 7}, {5, 8}, {5, 9}, {5, 10}, {4, 10}, {4, 9}, {4, 8}, {3, 10}, {4, 7}, {3, 9}, {2, 10}, {3, 8}, {2, 9}, {1, 10}, {4, 6}, {3, 7}, {2, 8}, {1, 9}, {0, 10}, {0, 9}, {1, 8}, {2, 7}, {0, 8}, {3, 6}, {1, 7}, {0, 7}, {2, 6}, {1, 6}, {0, 6}, {4, 5}, {3, 5}, {2, 5}, {1, 5}, {0, 5}, {0, 4}, {1, 4}, {2, 4}, {0, 3}, {3, 4}, {1, 3}, {0, 2}, {2, 3}, {1, 2}, {0, 1}, {4, 4}, {3, 3}, {2, 2}, {1, 1}, {0, 0}, {1, 0}, {2, 1}, {3, 2}, {2, 0}, {4, 3}, {3, 1}, {3, 0}, {4, 2}, {4, 1}, {4, 0}, {5, 4}, {5, 3}, {5, 2}, {5, 1}, {5, 0}};
 
-public:
-    RelativeMapGen(int (*relMapIn_arr)[6]);
-    // passed map array should be a 2-D array with dimensions 11x11
+    // Methods
     bool checkForObstacle(int index);
-    void updateMap(int *map);
     bool isInRange(float sharpReading, int blockVal);
+
+public:
+    // passed map array should be a 2-D array with dimensions 6x11
+    RelativeMapGen(int (*relMapIn_arr)[11]);
+    bool initArray(int (*relMapIn_arr)[11]);
+
+    // Call this method
+    void updateMap();
 };

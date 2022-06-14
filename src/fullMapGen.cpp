@@ -6,7 +6,7 @@ void FullMapGen::initData_array(int (*fullMapIn_arr)[6])
     this->fullMap_arr = fullMapIn_arr;
 }
 
-void FullMapGen::updateMap_arr(int *currentPos_arr, int (*relMap_arr)[3])
+void FullMapGen::updateMap_arr(int *currentPos_arr, int (*relMap_arr)[11])
 {
     int relMapsize = (sizeof(relMap_arr[0]) / sizeof(relMap_arr[0][0]) / 2);
 
