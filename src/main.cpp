@@ -72,7 +72,12 @@ void setup()
   // point the servo to front
   sharpMountServoInit.write(90);
   // Serial.println("Hello");
+  long int t1 = millis();
   arr_to_graph(nodeMap, fullMapTest);
+  long int t2 = millis();
+  Serial.print("Time taken by the task: ");
+  Serial.print(t2 - t1);
+  Serial.println(" milliseconds");
 
   // Find initial path for a map with no obstacles
 }
