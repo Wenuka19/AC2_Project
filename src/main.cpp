@@ -3,30 +3,12 @@
 #include <Arduino.h>
 
 // Required Files
+#include "mapArrays.h"
 #include "fullMapGen.h"
 #include "relativeMapGen.h"
 #include "mapper.h"
 
 // DEFINITIONS
-
-// 0 Arrays
-int fullMapIn[6][6] = {
-    {0, 1, 0, 0, 0, 1},
-    {1, 0, 1, 0, 0, 1},
-    {1, 1, 1, 0, 0, 1},
-    {0, 0, 1, 1, 0, 1},
-    {1, 0, 0, 0, 1, 1},
-    {1, 1, 0, 1, 1, 1}};
-
-// int fullMapTest[30][30] = {0};
-
-int relMapIn[6][11] = {
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
 // 1.1 Motor pins
 #define ENB_M1 5
@@ -63,6 +45,7 @@ Servo sharpMountServoInit;
 // Mapper objects
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
+Grid *nodeMap = new Grid;
 
 void setup()
 {
@@ -82,12 +65,14 @@ void setup()
   Serial.begin(9600);
 
   // Create mapper objects
-  fullMap.initData_array(fullMapIn);
+  fullMap.initData_array(fullMapTest);
   fullMap.updateMap_arr(currPos, relMapIn);
   sharpMountServoInit.attach(SERVO_PIN);
 
   // point the servo to front
   sharpMountServoInit.write(90);
+  // Serial.println("Hello");
+  arr_to_graph(nodeMap, fullMapTest);
 
   // Find initial path for a map with no obstacles
 }
@@ -103,18 +88,11 @@ void loop()
   05. Travel along the path.
   06.
   */
-  relMapper.updateMap();
-  fullMap.updateMap_arr(currPos, relMapIn);
+  // relMapper.updateMap();
+  // fullMap.updateMap_arr(currPos, relMapIn);
 
-  for (int i = 0; i < 6; i++)
-  {
-    for (int j = 0; j < 6; j++)
-    {
-      Serial.print(relMapIn[i][j]);
-      Serial.print(" ");
-    }
-    Serial.println(" ");
-  }
-  Serial.println(" ");
-  delay(200);
+  // Creating the node map
+  arr_to_graph(nodeMap, fullMapTest);
+
+  delay(2000);
 }

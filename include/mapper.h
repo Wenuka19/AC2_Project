@@ -1,7 +1,10 @@
 #pragma once
-#include "mapArrays.h"
+#include <Arduino.h>
+
 typedef struct Node Node;
 typedef struct Grid Grid;
+
+
 
 struct Node
 {
