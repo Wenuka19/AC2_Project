@@ -1,5 +1,3 @@
-#pragma once
-
 // Arduino Libraries
 #include <Servo.h>
 #include <Arduino.h>
@@ -10,6 +8,25 @@
 #include "mapper.h"
 
 // DEFINITIONS
+
+// 0 Arrays
+int fullMapIn[6][6] = {
+    {0, 1, 0, 0, 0, 1},
+    {1, 0, 1, 0, 0, 1},
+    {1, 1, 1, 0, 0, 1},
+    {0, 0, 1, 1, 0, 1},
+    {1, 0, 0, 0, 1, 1},
+    {1, 1, 0, 1, 1, 1}};
+
+// int fullMapTest[30][30] = {0};
+
+int relMapIn[6][11] = {
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
 // 1.1 Motor pins
 #define ENB_M1 5
@@ -28,12 +45,12 @@ const int TIME_PER_REV = 100;
 #define SHARP_PIN 14
 
 // 3.1 Map Inits
-#include "mapArrays.h"
+//#include "mapArrays.h"
 // Botton middle position
 int currPos[2] = {5, 5};
 
 // 3.2 Map structs
-#include "mapper.h"
+//#include "mapper.h"
 
 // Path Finding variables
 /*  Set the following variable to true when the robot
