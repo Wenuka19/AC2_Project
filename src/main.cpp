@@ -78,6 +78,14 @@ void setup()
 // the loop function runs over and over again forever
 void loop()
 {
+  /*
+  01. Initialize the path in setup[For a map with no obstacles]
+  02. Scan for obstacles.
+  03. Update the map.
+  04. Find a path.
+  05. Travel along the path.
+  06.
+  */
   relMapper.updateMap();
   fullMap.updateMap_arr(currPos, relMapIn);
 
