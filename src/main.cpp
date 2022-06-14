@@ -1,3 +1,5 @@
+#pragma once
+
 // Arduino Libraries
 #include <Servo.h>
 #include <Arduino.h>
@@ -5,6 +7,7 @@
 // Required Files
 #include "fullMapGen.h"
 #include "relativeMapGen.h"
+#include "mapper.h"
 
 // DEFINITIONS
 
