@@ -71,15 +71,14 @@ void setup()
 // the loop function runs over and over again forever
 void loop()
 {
-  // sharpMountServo1.write(0);
-  /*for (int i=0; i<90; i++){
-    sharpMountServo1.write(i);
-    delay(1000);
-  }
-  for (int i=90; i<0; i--){
-    sharpMountServo1.write(i);
-    delay(1000);
-  }*/
+  /*
+  01. Initialize the path in setup[For a map with no obstacles]
+  02. Scan for obstacles.
+  03. Update the map.
+  04. Find a path.
+  05. Travel along the path.
+  06.
+  */
   relMapper.updateMap();
   fullMap.updateMap_arr(currPos, relMapIn);
 
