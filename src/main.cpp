@@ -5,6 +5,7 @@
 // Required Files
 #include "fullMapGen.h"
 #include "relativeMapGen.h"
+#include "mapper.h"
 
 // DEFINITIONS
 
@@ -41,6 +42,7 @@ Servo sharpMountServoInit;
 // Mapper objects
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
+Grid* nodeMap = new Grid;
 
 void setup()
 {
@@ -61,7 +63,7 @@ void setup()
   Serial.println("");
 
   // Create mapper objects
-  fullMap.initData_array(fullMapIn);
+  fullMap.initData_array(fullMapTest);
   fullMap.updateMap_arr(currPos, relMapIn);
   sharpMountServoInit.attach(SERVO_PIN);
   /*
