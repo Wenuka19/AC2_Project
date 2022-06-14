@@ -17,7 +17,7 @@ struct Node
    * 4 - right
    */
   Node *front;
-  Node *rear;
+  Node *back;
   Node *left;
   Node *right;
 
