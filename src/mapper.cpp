@@ -9,7 +9,7 @@ void arr_to_graph(Grid *mapGrid, int (*fullMap_arr)[11])
   // no pointers are set
   for (int rows = 0; rows < 11; rows++)
   {
-    for (int cols = 0; cols < rowLen; cols++)
+    for (int cols = 0; cols < 11; cols++)
     {
       // Get the state from the created array
       int stateVal = fullMap_arr[rows][cols];
@@ -26,7 +26,7 @@ void arr_to_graph(Grid *mapGrid, int (*fullMap_arr)[11])
   // Setting pointers
   for (int rows = 0; rows < 11; rows++)
   {
-    for (int cols = 0; cols < rowLen; cols++)
+    for (int cols = 0; cols < 11; cols++)
     {
       Node *curNode = mapGrid->fullMap[rows][cols];
       Node *fr; // Front pointer

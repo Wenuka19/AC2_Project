@@ -63,21 +63,43 @@ void setup()
 
   // Initiate Serial for testing
   Serial.begin(9600);
+  Serial.println("");
 
   // Create mapper objects
   fullMap.initData_array(fullMapTest);
   fullMap.updateMap_arr(currPos, relMapIn);
   sharpMountServoInit.attach(SERVO_PIN);
+  /*
+    int counter = 0;
+    for (int rows = 0; rows < 11; rows++)
+    {
+      counter += 100;
+      for (int cols = 0; cols < 11; cols++)
+      {
+        fullMapTest[rows][cols] = counter;
+        counter += 1;
+      }
+    }*/
+
+  for (int rows = 0; rows < 11; rows++)
+  {
+    for (int cols = 0; cols < 11; cols++)
+    {
+      // Node *curNode = nodeMap->fullMap[rows][cols];
+      // Serial.print("(");
+      // Serial.print(rows);
+      // Serial.print(",");
+      // Serial.print(cols);
+      // Serial.print(")-");
+      Serial.print(fullMapTest[rows][cols]);
+      Serial.print(" | ");
+    }
+    Serial.println("");
+  }
 
   // point the servo to front
   sharpMountServoInit.write(90);
-  // Serial.println("Hello");
-  long int t1 = millis();
   arr_to_graph(nodeMap, fullMapTest);
-  long int t2 = millis();
-  Serial.print("Time taken by the task: ");
-  Serial.print(t2 - t1);
-  Serial.println(" milliseconds");
 
   // Find initial path for a map with no obstacles
 }
@@ -97,7 +119,23 @@ void loop()
   // fullMap.updateMap_arr(currPos, relMapIn);
 
   // Creating the node map
-  arr_to_graph(nodeMap, fullMapTest);
+  // arr_to_graph(nodeMap, fullMapTest);
+  Serial.println("Node map");
+  for (int rows = 0; rows < 11; rows++)
+  {
+    for (int cols = 0; cols < 11; cols++)
+    {
+      Node *curNode = nodeMap->fullMap[rows][cols];
+      Serial.print("(");
+      Serial.print(curNode->row);
+      Serial.print(",");
+      Serial.print(curNode->col);
+      Serial.print(")-");
+      Serial.print(curNode->state);
+      Serial.print(" | ");
+    }
+    Serial.println("");
+  }
 
-  delay(2000);
+  delay(2000000);
 }
