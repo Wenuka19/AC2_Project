@@ -3,10 +3,8 @@
 #include <Arduino.h>
 
 // Required Files
-#include "mapArrays.h"
 #include "fullMapGen.h"
 #include "relativeMapGen.h"
-#include "mapper.h"
 
 // DEFINITIONS
 
@@ -27,12 +25,10 @@ const int TIME_PER_REV = 100;
 #define SHARP_PIN 14
 
 // 3.1 Map Inits
-//#include "mapArrays.h"
-// Botton middle position
+#include "mapArrays.h"
 int currPos[2] = {5, 5};
 
 // 3.2 Map structs
-//#include "mapper.h"
 
 // Path Finding variables
 /*  Set the following variable to true when the robot
@@ -45,7 +41,6 @@ Servo sharpMountServoInit;
 // Mapper objects
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
-Grid *nodeMap = new Grid;
 
 void setup()
 {
@@ -66,7 +61,7 @@ void setup()
   Serial.println("");
 
   // Create mapper objects
-  fullMap.initData_array(fullMapTest);
+  fullMap.initData_array(fullMapIn);
   fullMap.updateMap_arr(currPos, relMapIn);
   sharpMountServoInit.attach(SERVO_PIN);
   /*
@@ -115,8 +110,8 @@ void loop()
   05. Travel along the path.
   06.
   */
-  // relMapper.updateMap();
-  // fullMap.updateMap_arr(currPos, relMapIn);
+  relMapper.updateMap();
+  fullMap.updateMap_arr(currPos, relMapIn);
 
   // Creating the node map
   // arr_to_graph(nodeMap, fullMapTest);
