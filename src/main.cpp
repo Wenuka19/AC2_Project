@@ -6,20 +6,25 @@
 #include "fullMapGen.h"
 #include "relativeMapGen.h"
 #include "mapper.h"
+#include "driver.h"
 
 // DEFINITIONS
 
 // 1.1 Motor pins
-#define ENB_M1 5
+#define ENB_M1 9
 #define ENB_M2 10
-#define IN1 7
-#define IN2 8
-#define IN3 9
-#define IN4 10
+
+// Left Motor
+#define IN1 2
+#define IN2 3
+
+// Right Motor
+#define IN3 4
+#define IN4 5
 #define SERVO_PIN 11
 
 // 1.2 Motor Params
-#define speed 50
+#define speed 5
 const int TIME_PER_REV = 100;
 
 // 2.1 IR pins - A0
@@ -42,8 +47,8 @@ Servo sharpMountServoInit;
 // Mapper objects
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
-Grid* nodeMap = new Grid;
-
+Grid *nodeMap = new Grid;
+Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
 void setup()
 {
   // SETTING PINS
@@ -96,16 +101,36 @@ void setup()
 
   // point the servo to front
   sharpMountServoInit.write(90);
-  arr_to_graph(nodeMap, fullMapTest);
+  // arr_to_graph(nodeMap, fullMapTest);
 
   // Find initial path for a map with no obstacles
-
-  Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
+  int path[20] = {1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  -1};
+  m_driver.follow_path(path);
 }
 
 // the loop function runs over and over again forever
 void loop()
 {
+
   /*
   01. Initialize the path in setup[For a map with no obstacles]
   02. Scan for obstacles.
@@ -114,27 +139,27 @@ void loop()
   05. Travel along the path.
   06.
   */
-  relMapper.updateMap();
-  fullMap.updateMap_arr(currPos, relMapIn);
+  // relMapper.updateMap();
+  // fullMap.updateMap_arr(currPos, relMapIn);
 
-  // Creating the node map
-  // arr_to_graph(nodeMap, fullMapTest);
-  Serial.println("Node map");
-  for (int rows = 0; rows < 11; rows++)
-  {
-    for (int cols = 0; cols < 11; cols++)
-    {
-      Node *curNode = nodeMap->fullMap[rows][cols];
-      Serial.print("(");
-      Serial.print(curNode->row);
-      Serial.print(",");
-      Serial.print(curNode->col);
-      Serial.print(")-");
-      Serial.print(curNode->state);
-      Serial.print(" | ");
-    }
-    Serial.println("");
-  }
+  // // Creating the node map
+  // // arr_to_graph(nodeMap, fullMapTest);
+  // Serial.println("Node map");
+  // for (int rows = 0; rows < 11; rows++)
+  // {
+  //   for (int cols = 0; cols < 11; cols++)
+  //   {
+  //     Node *curNode = nodeMap->fullMap[rows][cols];
+  //     Serial.print("(");
+  //     Serial.print(curNode->row);
+  //     Serial.print(",");
+  //     Serial.print(curNode->col);
+  //     Serial.print(")-");
+  //     Serial.print(curNode->state);
+  //     Serial.print(" | ");
+  //   }
+  //   Serial.println("");
+  // }
 
-  delay(2000000);
+  // delay(2000000);
 }

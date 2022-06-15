@@ -10,8 +10,8 @@
 class Driver
 {
 public:
-    int time_fwd = 2000;
-    int time_turn = 1000;
+    int time_fwd = 1000;
+    int time_turn = 500;
     int LM_1;
     int LM_2;
     int RM_1;

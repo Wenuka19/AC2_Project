@@ -22,24 +22,29 @@ void Driver::follow_path(int *path)
         switch (*path)
         {
         case FWD:
+            Serial.println("Forward");
             forward();
             break;
 
         case LFT:
+            Serial.println("leFT");
             left();
             break;
 
         case RGT:
+            Serial.println("rGHT");
             right();
             break;
 
         case BCK:
+            Serial.println("bACK");
             left();
             left();
             break;
         default:
             break;
         }
+        path++;
     }
 }
 
