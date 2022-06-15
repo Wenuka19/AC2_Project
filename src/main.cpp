@@ -6,6 +6,7 @@
 #include "fullMapGen.h"
 #include "relativeMapGen.h"
 #include "mapper.h"
+#include "driver.h"
 
 // DEFINITIONS
 
@@ -43,6 +44,7 @@ Servo sharpMountServoInit;
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
 Grid* nodeMap = new Grid;
+// Node nodes[11][11];
 
 void setup()
 {
@@ -66,7 +68,7 @@ void setup()
   fullMap.initData_array(fullMapTest);
   fullMap.updateMap_arr(currPos, relMapIn);
   sharpMountServoInit.attach(SERVO_PIN);
-  /*
+
     int counter = 0;
     for (int rows = 0; rows < 11; rows++)
     {
@@ -76,7 +78,7 @@ void setup()
         fullMapTest[rows][cols] = counter;
         counter += 1;
       }
-    }*/
+    }
 
   for (int rows = 0; rows < 11; rows++)
   {
@@ -96,11 +98,16 @@ void setup()
 
   // point the servo to front
   sharpMountServoInit.write(90);
+  long t1 = millis();
   arr_to_graph(nodeMap, fullMapTest);
-
+  delay(2000);
+  long t2 = millis();
+  Serial.println(t2);
+  Serial.println(t1);
+  Serial.println("end of setup");
   // Find initial path for a map with no obstacles
 
-  Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
+  // Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
 }
 
 // the loop function runs over and over again forever
@@ -114,8 +121,9 @@ void loop()
   05. Travel along the path.
   06.
   */
-  relMapper.updateMap();
-  fullMap.updateMap_arr(currPos, relMapIn);
+  Serial.println("Node map");
+  // relMapper.updateMap();
+  // fullMap.updateMap_arr(currPos, relMapIn);
 
   // Creating the node map
   // arr_to_graph(nodeMap, fullMapTest);

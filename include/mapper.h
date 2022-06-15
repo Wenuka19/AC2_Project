@@ -2,9 +2,7 @@
 #include <Arduino.h>
 
 typedef struct Node Node;
-typedef struct Grid Grid;
-
-
+// typedef struct Grid Grid;
 
 struct Node
 {
@@ -28,11 +26,13 @@ struct Node
   int state;
 };
 
-struct Grid // Map of nodes
+class Grid // Map of nodes
 {
   // An array to store nodes in order
   // of the map
-  Node *fullMap[11][11];
+public:
+  Node *fullMap[11][11] = {NULL};
+  // Allocate the memory inside the heap
 };
 
 // Convert a given array to a graph

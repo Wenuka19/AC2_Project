@@ -1,9 +1,10 @@
 #include "mapper.h"
+#include <Arduino.h>
 
 void arr_to_graph(Grid *mapGrid, int (*fullMap_arr)[11])
 {
   // int rowLen = sizeof(fullMap_arr[0]);
-  int rowLen = 11;
+  //int rowLen = 11;
 
   // Initiate all nodes
   // no pointers are set
@@ -16,11 +17,18 @@ void arr_to_graph(Grid *mapGrid, int (*fullMap_arr)[11])
 
       // Creating a node for the current location
       Node *newNode = new Node;
+      Serial.println("Node created");
 
       newNode->col = cols;
       newNode->row = rows;
       newNode->state = stateVal;
       mapGrid->fullMap[rows][cols] = newNode;
+      Serial.print(mapGrid->fullMap[rows][cols]->row);
+      Serial.print(" ");
+      Serial.print(mapGrid->fullMap[rows][cols]->col);
+      Serial.print(" ");
+      Serial.print(mapGrid->fullMap[rows][cols]->state);
+      Serial.println("");
     }
   }
   // Setting pointers
