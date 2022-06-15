@@ -47,8 +47,14 @@ Servo sharpMountServoInit;
 // Mapper objects
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
+<<<<<<< HEAD
 Grid *nodeMap = new Grid;
 Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
+=======
+Grid* nodeMap = new Grid;
+// Node nodes[11][11];
+
+>>>>>>> 025ba498255ed66efde68b2bf6637b379bbe9f2e
 void setup()
 {
   // SETTING PINS
@@ -71,7 +77,7 @@ void setup()
   fullMap.initData_array(fullMapTest);
   fullMap.updateMap_arr(currPos, relMapIn);
   sharpMountServoInit.attach(SERVO_PIN);
-  /*
+
     int counter = 0;
     for (int rows = 0; rows < 11; rows++)
     {
@@ -81,7 +87,7 @@ void setup()
         fullMapTest[rows][cols] = counter;
         counter += 1;
       }
-    }*/
+    }
 
   for (int rows = 0; rows < 11; rows++)
   {
@@ -101,6 +107,7 @@ void setup()
 
   // point the servo to front
   sharpMountServoInit.write(90);
+<<<<<<< HEAD
   // arr_to_graph(nodeMap, fullMapTest);
 
   // Find initial path for a map with no obstacles
@@ -125,6 +132,18 @@ void setup()
                   1,
                   -1};
   m_driver.follow_path(path);
+=======
+  long t1 = millis();
+  arr_to_graph(nodeMap, fullMapTest);
+  delay(2000);
+  long t2 = millis();
+  Serial.println(t2);
+  Serial.println(t1);
+  Serial.println("end of setup");
+  // Find initial path for a map with no obstacles
+
+  // Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
+>>>>>>> 025ba498255ed66efde68b2bf6637b379bbe9f2e
 }
 
 // the loop function runs over and over again forever
@@ -139,6 +158,7 @@ void loop()
   05. Travel along the path.
   06.
   */
+<<<<<<< HEAD
   // relMapper.updateMap();
   // fullMap.updateMap_arr(currPos, relMapIn);
 
@@ -162,4 +182,30 @@ void loop()
   // }
 
   // delay(2000000);
+=======
+  Serial.println("Node map");
+  // relMapper.updateMap();
+  // fullMap.updateMap_arr(currPos, relMapIn);
+
+  // Creating the node map
+  // arr_to_graph(nodeMap, fullMapTest);
+  Serial.println("Node map");
+  for (int rows = 0; rows < 11; rows++)
+  {
+    for (int cols = 0; cols < 11; cols++)
+    {
+      Node *curNode = nodeMap->fullMap[rows][cols];
+      Serial.print("(");
+      Serial.print(curNode->row);
+      Serial.print(",");
+      Serial.print(curNode->col);
+      Serial.print(")-");
+      Serial.print(curNode->state);
+      Serial.print(" | ");
+    }
+    Serial.println("");
+  }
+
+  delay(2000000);
+>>>>>>> 025ba498255ed66efde68b2bf6637b379bbe9f2e
 }
