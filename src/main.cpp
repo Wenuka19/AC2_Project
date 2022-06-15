@@ -11,10 +11,14 @@
 // 1.1 Motor pins
 #define ENB_M1 5
 #define ENB_M2 10
-#define IN1 7
-#define IN2 8
-#define IN3 9
-#define IN4 10
+
+// Left Motor
+#define IN1 1
+#define IN2 2
+
+// Right Motor
+#define IN3 3
+#define IN4 4
 #define SERVO_PIN 11
 
 // 1.2 Motor Params
@@ -97,8 +101,6 @@ void setup()
   arr_to_graph(nodeMap, fullMapTest);
 
   // Find initial path for a map with no obstacles
-
-  Driver m_driver(IN1, IN2, IN3, IN4, ENB_M1, ENB_M2, speed);
 }
 
 // the loop function runs over and over again forever
