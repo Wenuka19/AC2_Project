@@ -11,16 +11,20 @@
 // DEFINITIONS
 
 // 1.1 Motor pins
-#define ENB_M1 5
+#define ENB_M1 9
 #define ENB_M2 10
-#define IN1 7
-#define IN2 8
-#define IN3 9
-#define IN4 10
+
+// Left Motor
+#define IN1 2
+#define IN2 3
+
+// Right Motor
+#define IN3 4
+#define IN4 5
 #define SERVO_PIN 11
 
 // 1.2 Motor Params
-#define speed 50
+#define speed 5
 const int TIME_PER_REV = 100;
 
 // 2.1 IR pins - A0
@@ -40,8 +44,11 @@ bool isComplete;
 // Servo sharpMountServoInit;
 
 // Mapper objects
+
 // FullMapGen fullMap;
 // RelativeMapGen relMapper(relMapIn);
+FullMapGen fullMap;
+RelativeMapGen relMapper(relMapIn);
 
 void setup()
 {
@@ -70,11 +77,14 @@ void setup()
 
 // Init Node array
 #include "arr_to_graph.h"
+
+  // Find initial path for a map with no obstacles
 }
 
 // the loop function runs over and over again forever
 void loop()
 {
+
   /*
   01. Initialize the path in setup[For a map with no obstacles]
   02. Scan for obstacles.
@@ -83,31 +93,4 @@ void loop()
   05. Travel along the path.
   06.
   */
-
-  Serial.println("Node map");
-
-  // Print node Array
-  // for (int rows = 0; rows < 11; rows++)
-  // {
-  //   for (int cols = 0; cols < 11; cols++)
-  //   {
-  //     Serial.print(nodeArray[rows][cols].state);
-  //     Serial.print(" ");
-  //     Serial.print(nodeArray[rows][cols].row);
-  //     Serial.print(" ");
-  //     Serial.print(nodeArray[rows][cols].col);
-  //     Serial.print(" ");
-  //     // Serial.print((int)&nodeArray[rows][cols]);
-  //     // Left node
-  //     Serial.print(" (");
-  //     Serial.print(nodeArray[rows][cols].right->row);
-  //     Serial.print(",");
-  //     Serial.print(nodeArray[rows][cols].right->col);
-  //     Serial.print(")");
-  //     Serial.print(" | ");
-  //   }
-  //   Serial.println("");
-  // }
-
-  delay(2000000);
 }
