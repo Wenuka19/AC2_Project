@@ -8,7 +8,7 @@
 #define RGT 2
 #define BCK 3
 
-void visitNode(Node *fromNode, Node *toNode);
+void visitAdjacentNode(Node *fromNode, Node *toNode);
 
 class Driver
 {

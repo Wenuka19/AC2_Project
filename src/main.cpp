@@ -44,9 +44,6 @@ bool isComplete;
 // Servo sharpMountServoInit;
 
 // Mapper objects
-
-// FullMapGen fullMap;
-// RelativeMapGen relMapper(relMapIn);
 FullMapGen fullMap;
 RelativeMapGen relMapper(relMapIn);
 
@@ -72,8 +69,8 @@ void setup()
   }
 
   // Create mapper objects
-  // fullMap.initData_array(fullMapTest);
-  // fullMap.updateMap_arr(currPos, relMapIn);
+  fullMap.initData_array(fullMapTest);
+  fullMap.updateMap_arr(currPos, relMapIn);
 
 // Init Node array
 #include "arr_to_graph.h"

@@ -1,21 +1,21 @@
 #include "driver.h"
 
-void visitNode(Node *fromNode, Node *toNode)
+void visitAdjacentNode(Node *fromNode, Node *toNode)
 {
     // Check the direction of the toNode
-    if (toNode = fromNode->back)
+    if (toNode == fromNode->back)
     {
         // Driver.moveBack()
     }
-    if (toNode = fromNode->front)
+    if (toNode == fromNode->front)
     {
         // Driver.moveBack()
     }
-    if (toNode = fromNode->left)
+    if (toNode == fromNode->left)
     {
         // Driver.moveBack()
     }
-    if (toNode = fromNode->right)
+    if (toNode == fromNode->right)
     {
         // Driver.moveBack()
     }
