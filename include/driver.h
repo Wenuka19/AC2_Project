@@ -1,11 +1,14 @@
 #pragma once
 #include "Arduino.h"
+#include "mapper.h"
 
 // MOVEMENT PARAMS
 #define FWD 0
 #define LFT 1
 #define RGT 2
 #define BCK 3
+
+void visitNode(Node *fromNode, Node *toNode);
 
 class Driver
 {

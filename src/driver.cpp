@@ -1,5 +1,26 @@
 #include "driver.h"
 
+void visitNode(Node *fromNode, Node *toNode)
+{
+    // Check the direction of the toNode
+    if (toNode = fromNode->back)
+    {
+        // Driver.moveBack()
+    }
+    if (toNode = fromNode->front)
+    {
+        // Driver.moveBack()
+    }
+    if (toNode = fromNode->left)
+    {
+        // Driver.moveBack()
+    }
+    if (toNode = fromNode->right)
+    {
+        // Driver.moveBack()
+    }
+}
+
 Driver::Driver(int motor1_1, int motor1_2, int motor2_1, int motor2_2, int motor1_EN, int motor2_EN, int speed)
 {
     this->LM_1 = motor1_1;
